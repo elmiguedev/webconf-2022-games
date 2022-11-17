@@ -1,12 +1,31 @@
 {
   "name": "webconf-2022",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-game": "parcel build src/game/index.js src/game/index.html",
+    "watch-game": "parcel watch src/game/index.js src/game/index.html",
+    "run-server": "node src/app.js",
+    "watch-server": "nodemon -r dotenv/config src/app.js",
+    "dev": "concurrently \"npm run watch-game\" \"npm run watch-server\"",
+    "start": "npm run build-game && npm run run-server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "webconf",
+    "webconf2022"
+  ],
+  "author": "elmiguedev",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.55.2",
+    "socket.io": "^4.5.3",
+    "socket.io-client": "^4.5.3"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "concurrently": "^7.5.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "parcel": "^2.8.0",
+    "twit": "^2.2.11"
+  }
 }
