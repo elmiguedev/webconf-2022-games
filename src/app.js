@@ -6,16 +6,9 @@ const gameServer = new GameServer();
 // 2. define hashtags to stream
 gameServer.createTweetListener({
   key: "webconf",
-  filter: ["#javascript", "#python"],
+  filter: ["#webconf", "#webconflatam", "@webconflatam"],
   callback: (t) => {
-    console.log("JS!, " + t.id);
-  }
-});
-gameServer.createTweetListener({
-  key: "py2",
-  filter: ["#python"],
-  callback: (t) => {
-    console.log("PY!, " + t.id);
+    console.log("webconf!, " + t.id);
   }
 });
 

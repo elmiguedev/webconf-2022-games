@@ -24,7 +24,7 @@ export default class MainScene extends Phaser.Scene {
 
   checkTweetContent(data) {
     const hashtags = data.tweet.hashtags;
-    if (hashtags.includes("machinelearning")) this.checkTweet("python", tweet);
+    if (hashtags.includes("vue")) this.checkTweet("vue", tweet);
     if (hashtags.includes("angular")) this.checkTweet("angular", tweet);
     if (hashtags.includes("react")) this.checkTweet("react", tweet);
   }
@@ -63,14 +63,13 @@ export default class MainScene extends Phaser.Scene {
 
   checkTweet(key, tweet) {
     switch (key) {
-      case "python": this.vue.x += 50; break;
-      case "js": this.angular.x += 50; break;
+      case "vue": this.vue.x += 50; break;
+      case "angular": this.angular.x += 50; break;
       case "react": this.react.x += 50; break;
       default:
         break;
     }
     this.addUser(tweet);
-    console.log(this.users);
   }
 
   addUser(tweet) {
