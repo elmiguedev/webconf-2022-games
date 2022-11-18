@@ -16,17 +16,17 @@
   "author": "elmiguedev",
   "license": "ISC",
   "dependencies": {
+    "buffer": "^6.0.3",
+    "express": "^4.18.2",
     "phaser": "^3.55.2",
     "socket.io": "^4.5.3",
-    "socket.io-client": "^4.5.3"
+    "socket.io-client": "^4.5.3",
+    "twit": "^2.2.11"
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
     "concurrently": "^7.5.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
     "nodemon": "^2.0.20",
-    "parcel": "^2.8.0",
-    "twit": "^2.2.11"
+    "parcel": "^2.8.0"
   }
 }
