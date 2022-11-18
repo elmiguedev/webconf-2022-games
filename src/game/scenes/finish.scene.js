@@ -33,7 +33,7 @@ export default class FinishScene extends Phaser.Scene {
       const index = Phaser.Math.Between(0, this.users.length - 1);
       const user = this.users[index];
       this.userText.setText(`${user.name}\n(${user.key})`);
-    }, 100);
+    }, 50);
   }
 
   createKeys() {
@@ -55,7 +55,7 @@ export default class FinishScene extends Phaser.Scene {
           const index = Phaser.Math.Between(0, this.users.length - 1);
           const user = this.users[index];
           this.userText.setText(`${user.name}\n(${user.key})`);
-        }, 100);
+        }, 50);
       }
     }
   }

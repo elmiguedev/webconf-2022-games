@@ -24,15 +24,17 @@ export default class MainScene extends Phaser.Scene {
 
   checkTweetContent(data) {
     const hashtags = data.tweet.hashtags;
-    if (hashtags.includes("vue")) this.checkTweet("vue", data.tweet);
-    if (hashtags.includes("angular")) this.checkTweet("angular", data.tweet);
-    if (hashtags.includes("react")) this.checkTweet("react", data.tweet);
+    if (hashtags.includes("csharp")) this.checkTweet("csharp", data.tweet);
+    if (hashtags.includes("python")) this.checkTweet("python", data.tweet);
+    if (hashtags.includes("nodejs")) this.checkTweet("nodejs", data.tweet);
+    if (hashtags.includes("java")) this.checkTweet("java", data.tweet);
   }
 
   createStarters() {
-    this.vue = this.add.image(150, 150, "vue").setScale(0.3);
-    this.angular = this.add.image(150, 350, "angular").setScale(0.3);
-    this.react = this.add.image(150, 550, "react").setScale(0.3);
+    this.csharp = this.add.image(150, 150, "csharp").setScale(0.2);
+    this.python = this.add.image(150, 300, "python").setScale(0.2);
+    this.nodejs = this.add.image(150, 450, "nodejs").setScale(0.2);
+    this.java = this.add.image(150, 600, "java").setScale(0.2);
   }
 
   createFinish() {
@@ -63,9 +65,10 @@ export default class MainScene extends Phaser.Scene {
 
   checkTweet(key, tweet) {
     switch (key) {
-      case "vue": this.vue.x += 50; break;
-      case "angular": this.angular.x += 50; break;
-      case "react": this.react.x += 50; break;
+      case "csharp": this.csharp.x += 50; break;
+      case "python": this.python.x += 50; break;
+      case "nodejs": this.nodejs.x += 50; break;
+      case "java": this.java.x += 50; break;
       default:
         break;
     }
@@ -84,7 +87,7 @@ export default class MainScene extends Phaser.Scene {
 
 
   checkFinish() {
-    if (this.vue.x >= 950 || this.react.x >= 950 || this.angular >= 950) {
+    if (this.nodejs.x >= 950 || this.python.x >= 950 || this.csharp >= 950 || this.java >= 950) {
       this.scene.start("FinishScene", this.users);
     }
   }
