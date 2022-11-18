@@ -12,86 +12,98 @@ export default class MainScene extends Phaser.Scene {
   // ----------------------------
 
   /**
-   * Just an example entity which can move around the screen
-   */
-  createMonkey() {
-    this.monkey = this.add.image(100, 100, "monkey");
-  }
-
-  /**
-   * creates keys for example entity
-   */
-  createKeys() {
-    this.teclas = {
-      left: this.input.keyboard.addKey("left"),
-      right: this.input.keyboard.addKey("right"),
-      up: this.input.keyboard.addKey("up"),
-      down: this.input.keyboard.addKey("down"),
-    }
-  }
-
-  /**
    * creates io listener for tweets, through ServerManager instance
    */
   createTwitterListener() {
     this.serverManager = new ServerManager();
     this.serverManager.onTweet((data) => {
-      this.createRandomText(data.key);
+      console.log(data);
+      this.checkTweetContent(data);
     });
   }
 
-  /**
-   * creates a random text, depending on the received key
-   */
-  createRandomText(key) {
-    let text = "";
-    switch (key) {
-      case "js":
-        text = "Javascript!"
-        break;
-      case "py":
-        text = "Python!";
-        break;
-      default:
-        break;
-    }
+  checkTweetContent(data) {
+    const hashtags = data.tweet.hashtags;
+    if (hashtags.includes("machinelearning")) this.checkTweet("python", tweet);
+    if (hashtags.includes("angular")) this.checkTweet("angular", tweet);
+    if (hashtags.includes("react")) this.checkTweet("react", tweet);
+  }
 
-    this.add.text(
-      Phaser.Math.Between(10, 630),
-      Phaser.Math.Between(10, 470),
-      text
-    );
+  createStarters() {
+    this.vue = this.add.image(150, 150, "vue").setScale(0.3);
+    this.angular = this.add.image(150, 350, "angular").setScale(0.3);
+    this.react = this.add.image(150, 550, "react").setScale(0.3);
+  }
+
+  createFinish() {
+    this.finish_up = this.add.image(950, 100, "finish").setScale(0.3);
+    this.finish_down = this.add.image(950, 600, "finish").setScale(0.3);
+  }
+
+  createBackground() {
+    this.add.image(0, 0, "background").setOrigin(0);
+  }
+
+  createKeys() {
+    this.keys = this.input.keyboard.createCursorKeys();
+  }
+
+  createUsers() {
+    this.users = {};
   }
 
   // check methods
   // --------------------------
 
   checkKeys() {
-    if (this.teclas.right.isDown) {
-      this.monkey.x += 3;
-    }
-    if (this.teclas.left.isDown) {
-      this.monkey.x -= 3;
-    }
-    if (this.teclas.up.isDown) {
-      this.monkey.y -= 3;
-    }
-    if (this.teclas.down.isDown) {
-      this.monkey.y += 3;
+    if (this.keys.right.isDown) {
+      this.vue.x += 50;
     }
   }
 
+  checkTweet(key, tweet) {
+    switch (key) {
+      case "python": this.vue.x += 50; break;
+      case "js": this.angular.x += 50; break;
+      case "react": this.react.x += 50; break;
+      default:
+        break;
+    }
+    this.addUser(tweet);
+    console.log(this.users);
+  }
+
+  addUser(tweet) {
+    const key = tweet.tweet.username;
+    const name = tweet.tweet.displayName;
+    this.users[key] = {
+      key,
+      name
+    }
+  }
+
+
+
+  checkFinish() {
+    if (this.vue.x >= 950 || this.react.x >= 950 || this.angular >= 950) {
+      this.scene.start("FinishScene", this.users);
+    }
+  }
 
   // main loop methods
   // ----------------------------
 
   init() {
-    this.createMonkey();
+    this.createUsers();
     this.createKeys();
+    this.createBackground();
     this.createTwitterListener();
+    this.createStarters();
+    this.createFinish();
   }
 
   update() {
     this.checkKeys();
+    this.checkFinish();
   }
 }

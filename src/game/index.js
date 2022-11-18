@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import BootloaderScene from "./scenes/bootloader.scene"
+import FinishScene from "./scenes/finish.scene";
 import MainScene from "./scenes/main.scene"
 
 export default class Game extends Phaser.Game {
@@ -7,11 +8,12 @@ export default class Game extends Phaser.Game {
     super({
       type: Phaser.AUTO,
       parent: "divGame",
-      width: 640,
-      height: 480,
+      width: 1280,
+      height: 720,
       scene: [
         BootloaderScene,
-        MainScene
+        MainScene,
+        FinishScene
       ]
     });
   }
