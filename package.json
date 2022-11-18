@@ -6,7 +6,8 @@
     "run-server": "node src/app.js",
     "watch-server": "nodemon -r dotenv/config src/app.js",
     "dev": "concurrently \"npm run watch-game\" \"npm run watch-server\"",
-    "start": "npm run build-game && npm run run-server"
+    "build": "npm run build-game && npm run run-server",
+    "start": "node src/app.js"
   },
   "keywords": [
     "webconf",
