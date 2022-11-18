@@ -24,9 +24,9 @@ export default class MainScene extends Phaser.Scene {
 
   checkTweetContent(data) {
     const hashtags = data.tweet.hashtags;
-    if (hashtags.includes("vue")) this.checkTweet("vue", tweet);
-    if (hashtags.includes("angular")) this.checkTweet("angular", tweet);
-    if (hashtags.includes("react")) this.checkTweet("react", tweet);
+    if (hashtags.includes("vue")) this.checkTweet("vue", data.tweet);
+    if (hashtags.includes("angular")) this.checkTweet("angular", data.tweet);
+    if (hashtags.includes("react")) this.checkTweet("react", data.tweet);
   }
 
   createStarters() {
