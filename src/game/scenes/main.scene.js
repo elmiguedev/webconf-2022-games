@@ -73,8 +73,8 @@ export default class MainScene extends Phaser.Scene {
   }
 
   addUser(tweet) {
-    const key = tweet.tweet.username;
-    const name = tweet.tweet.displayName;
+    const key = tweet.username;
+    const name = tweet.displayName;
     this.users[key] = {
       key,
       name
